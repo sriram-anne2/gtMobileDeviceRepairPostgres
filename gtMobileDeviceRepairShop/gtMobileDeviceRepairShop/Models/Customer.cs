@@ -16,4 +16,8 @@ public class Customer
     public DateTime CreatedOn { get; set; }
     [Required]
     public DateTime LastUpdated { get; set; }
+    
+    [Required]
+    public ICollection<Device> Devices { get; set; }
+
 }

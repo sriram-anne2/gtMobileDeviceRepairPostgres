@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using gtMobileDeviceRepairShop.Models;
@@ -11,9 +12,11 @@ using gtMobileDeviceRepairShop.Models;
 namespace gtMobileDeviceRepairShop.Migrations
 {
     [DbContext(typeof(RepairShopDBContext))]
-    partial class RepairShopDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220928190250_pre2")]
+    partial class pre2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -258,7 +261,7 @@ namespace gtMobileDeviceRepairShop.Migrations
             modelBuilder.Entity("gtMobileDeviceRepairShop.Models.Vehicles", b =>
                 {
                     b.HasOne("gtMobileDeviceRepairShop.Models.User", "User")
-                        .WithMany("Vehicles")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -279,11 +282,6 @@ namespace gtMobileDeviceRepairShop.Migrations
             modelBuilder.Entity("gtMobileDeviceRepairShop.Models.Device", b =>
                 {
                     b.Navigation("Repairs");
-                });
-
-            modelBuilder.Entity("gtMobileDeviceRepairShop.Models.User", b =>
-                {
-                    b.Navigation("Vehicles");
                 });
 #pragma warning restore 612, 618
         }

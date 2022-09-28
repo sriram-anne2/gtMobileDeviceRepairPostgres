@@ -10,6 +10,8 @@ public class RepairShopDBContext : DbContext
     }
     
     public DbSet<ToDoItem> ToDoItems { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<Vehicles> Vehicles { get; set; }
     
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Device> Devices { get; set; }

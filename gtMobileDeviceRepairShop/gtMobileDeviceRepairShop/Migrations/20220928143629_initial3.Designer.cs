@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using gtMobileDeviceRepairShop.Models;
@@ -11,9 +12,11 @@ using gtMobileDeviceRepairShop.Models;
 namespace gtMobileDeviceRepairShop.Migrations
 {
     [DbContext(typeof(RepairShopDBContext))]
-    partial class RepairShopDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220928143629_initial3")]
+    partial class initial3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -173,7 +176,7 @@ namespace gtMobileDeviceRepairShop.Migrations
                         .IsRequired();
 
                     b.HasOne("gtMobileDeviceRepairShop.Models.Device", "Device")
-                        .WithMany("Repairs")
+                        .WithMany()
                         .HasForeignKey("DeviceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -191,11 +194,6 @@ namespace gtMobileDeviceRepairShop.Migrations
                 });
 
             modelBuilder.Entity("gtMobileDeviceRepairShop.Models.DailyOrderSession", b =>
-                {
-                    b.Navigation("Repairs");
-                });
-
-            modelBuilder.Entity("gtMobileDeviceRepairShop.Models.Device", b =>
                 {
                     b.Navigation("Repairs");
                 });

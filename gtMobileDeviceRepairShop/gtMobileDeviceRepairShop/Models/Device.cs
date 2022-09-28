@@ -21,4 +21,7 @@ public class Device
     [Required]
     public Customer Customer { get; set; }
     
+    [Required]
+    public ICollection<Repair> Repairs { get; set; }
+
 }

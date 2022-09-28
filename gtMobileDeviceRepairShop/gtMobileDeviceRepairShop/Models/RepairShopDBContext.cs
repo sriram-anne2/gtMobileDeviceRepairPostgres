@@ -11,4 +11,6 @@ public class RepairShopDBContext : DbContext
     
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Device> Devices { get; set; }
+    public DbSet<Repair> Repairs { get; set; }
+    public DbSet<DailyOrderSession> DailyOrderSessions { get; set; }
 }

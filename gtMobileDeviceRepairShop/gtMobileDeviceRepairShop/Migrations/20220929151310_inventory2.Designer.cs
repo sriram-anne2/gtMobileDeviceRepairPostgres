@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using gtMobileDeviceRepairShop.Models;
@@ -11,9 +12,11 @@ using gtMobileDeviceRepairShop.Models;
 namespace gtMobileDeviceRepairShop.Migrations
 {
     [DbContext(typeof(RepairShopDBContext))]
-    partial class RepairShopDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220929151310_inventory2")]
+    partial class inventory2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

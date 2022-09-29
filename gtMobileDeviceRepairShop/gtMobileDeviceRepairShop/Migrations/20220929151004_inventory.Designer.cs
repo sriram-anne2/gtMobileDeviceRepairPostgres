@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using gtMobileDeviceRepairShop.Models;
@@ -11,9 +12,11 @@ using gtMobileDeviceRepairShop.Models;
 namespace gtMobileDeviceRepairShop.Migrations
 {
     [DbContext(typeof(RepairShopDBContext))]
-    partial class RepairShopDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220929151004_inventory")]
+    partial class inventory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,15 +120,13 @@ namespace gtMobileDeviceRepairShop.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("PartsId")
+                    b.Property<long>("PartId")
                         .HasColumnType("bigint");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PartsId");
 
                     b.ToTable("inventory_entry");
 
@@ -268,9 +269,6 @@ namespace gtMobileDeviceRepairShop.Migrations
                 {
                     b.HasBaseType("gtMobileDeviceRepairShop.Models.Inventory");
 
-                    b.Property<long>("PartId")
-                        .HasColumnType("bigint");
-
                     b.HasIndex("PartId");
 
                     b.ToTable("inventory_full");
@@ -285,17 +283,6 @@ namespace gtMobileDeviceRepairShop.Migrations
                         .IsRequired();
 
                     b.Navigation("Customer");
-                });
-
-            modelBuilder.Entity("gtMobileDeviceRepairShop.Models.Inventory", b =>
-                {
-                    b.HasOne("gtMobileDeviceRepairShop.Models.Parts", "Parts")
-                        .WithMany()
-                        .HasForeignKey("PartsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Parts");
                 });
 
             modelBuilder.Entity("gtMobileDeviceRepairShop.Models.Repair", b =>
